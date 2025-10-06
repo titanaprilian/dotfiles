@@ -1,0 +1,716 @@
+: 1759595755:0;clear
+: 1759595755:0;ls
+: 1759595769:0;clear
+: 1759595772:0;cd /
+: 1759595772:0;ls
+: 1759595776:0;cd home/titanic
+: 1759595777:0;ls
+: 1759595778:0;clear
+: 1759595779:0;ls
+: 1759595789:0;sudo apt install curl -y
+: 1759595792:0;clear
+: 1759595801:0;chsh -s $(which zsh)
+: 1759595806:0;clear
+: 1759595810:0;exit
+: 1759595816:0;clear
+: 1759595817:0;ls
+: 1759595822:0;clear
+: 1759595831:0;nano ~/.zshrc
+: 1759595866:0;source ~/.zshrc
+: 1759595869:0;clear
+: 1759595877:0;git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+: 1759595902:0;ZSH_THEME="powerlevel10k/powerlevel10k"
+: 1759595904:0;clear
+: 1759595908:0;source ~/.zshrc
+: 1759595910:0;clear
+: 1759595912:0;exit
+: 1759595919:0;clear
+: 1759596062:0;sudo nano /etc/wsl.conf
+: 1759596230:0;clear
+: 1759596244:0;nano ~/.bashrc
+: 1759596288:0;clear
+: 1759596302:0;exit
+: 1759596374:0;clear
+: 1759596422:0;nano ~/.bashrc
+: 1759596472:0;clear
+: 1759596479:0;cd /
+: 1759596481:0;ls
+: 1759596484:0;exit
+: 1759596521:0;nano ~/.bashrc
+: 1759596539:0;exit
+: 1759596587:0;cat /etc/wsl.conf
+: 1759596605:0;clear
+: 1759597270:0;ls
+: 1759597437:0;mkdir laravel
+: 1759597439:0;cd laravel
+: 1759597439:0;ls
+: 1759597441:0;code .
+: 1759597556:0;clear
+: 1759597570:0;nano ~/.zshrc
+: 1759597601:0;source ~/.zshrc
+: 1759597714:0;clera
+: 1759597716:0;clear
+: 1759597716:0;ls
+: 1759597720:0;cd ../
+: 1759597721:0;ls
+: 1759597724:0;rm -rf laravel
+: 1759597725:0;clear
+: 1759597726:0;ls
+: 1759597846:0;clear
+: 1759597854:0;Configure Powerlevel10k
+: 1759597861:0;source ~/.zshrc
+: 1759597870:0;p10k configure
+: 1759597877:0;clear
+: 1759597888:0;nano ~/.p10k.zsh
+: 1759597915:0;vim ~/.p10k.zsh
+: 1759598006:0;clear
+: 1759598010:0;cleawr
+: 1759598011:0;clear
+: 1759598014:0;p10k configure
+: 1759598037:0;ls $ZSH/themes
+: 1759598074:0;nano ~/.zshrc
+: 1759598093:0;source ~/.zshrc
+: 1759598108:0;nano ~/.zshrc
+: 1759598126:0;source ~/.zshrc
+: 1759598128:0;clear
+: 1759598135:0;exit
+: 1759598175:0;clear
+: 1759598193:0;ls
+: 1759598211:0;nano ~/.zshrc
+: 1759598231:0;source ~/.zshrc
+: 1759598235:0;cleawr
+: 1759598236:0;clear
+: 1759598255:0;nano ~/.zshrc
+: 1759598285:0;source ~/.zshrc
+: 1759634206:0;ls
+: 1759634207:0;clear
+: 1759634434:0;git --version
+: 1759634461:0;git config --global user.name "titanaprilian"
+: 1759634473:0;git config --global user.email "titanaprilian73@gmail.com"
+: 1759634476:0;git config --list
+: 1759634500:0;ssh-keygen -t ed25519 -c "titanaprilian73@gmail.com"
+: 1759634513:0;ssh-keygen -t ed25519 -C "titanaprilian73@gmail.com"
+: 1759634518:0;clear
+: 1759634530:0;eval "$(ssh-agent -s)"
+: 1759634598:0;sudo apt update
+: 1759634614:0;clear
+: 1759634617:0;sudo apt install git -y
+: 1759634618:0;clear
+: 1759634628:0;ssh-add ~/.ssh/id_ed25519
+: 1759634636:0;cat ~/.ssh/id_ed25519.pub
+: 1759634696:0;ssh -T git@github.com
+: 1759634709:0;clear
+: 1759634742:0;ls
+: 1759634752:0;git clone https://github.com/KKN-Tematik-09/laravel-ngrayun.git
+: 1759634784:0;git clone git@github.com:KKN-Tematik-09/laravel-ngrayun.git
+: 1759634807:0;clear
+: 1759634807:0;ls
+: 1759634810:0;cd laravel-ngrayun
+: 1759634811:0;ls
+: 1759634814:0;clear
+: 1759634816:0;cd ../
+: 1759634874:0;git clone https://github.com/powerline/fonts
+: 1759634956:0;cd fonts
+: 1759634957:0;ls
+: 1759634962:0;./install.sh
+: 1759634967:0;clear
+: 1759635073:0;cd ../
+: 1759635074:0;ls
+: 1759635076:0;rm -rf fonts
+: 1759635077:0;clear
+: 1759635313:0;ls
+: 1759635316:0;rm -rf laravel-ngrayun
+: 1759635317:0;clear
+: 1759635695:0;ls
+: 1759635728:0;clear
+: 1759635729:0;ls
+: 1759635731:0;clear
+: 1759635737:0;ls
+: 1759635738:0;fdas
+: 1759635741:0;clear
+: 1759635741:0;ls
+: 1759635742:0;clear
+: 1759635766:0;mkdir dev
+: 1759635770:0;mkdir .config
+: 1759635772:0;mkdir bin
+: 1759635779:0;mkdir dotfiles
+: 1759635781:0;mkdir tools
+: 1759635782:0;clear
+: 1759635784:0;ls
+: 1759635793:0;cd .config
+: 1759635793:0;ls
+: 1759635794:0;cd ../
+: 1759635798:0;clear
+: 1759635898:0;nano ~/.zshrc
+: 1759635924:0;clear
+: 1759635925:0;ls
+: 1759635995:0;nano ~/.zshrc
+: 1759636010:0;source ~/.zshrc
+: 1759636013:0;clear
+: 1759636017:0;ls
+: 1759636023:0;cd bin
+: 1759636041:0;touch goto
+: 1759636042:0;ls
+: 1759636043:0;clear
+: 1759636047:0;nano goto
+: 1759636060:0;chmod +x ~/bin/goto
+: 1759636061:0;clear
+: 1759636069:0;cd ../
+: 1759636070:0;ls
+: 1759636072:0;cd dev
+: 1759636072:0;ls
+: 1759636074:0;mkdir web
+: 1759636076:0;mkdir ml
+: 1759636081:0;mkdir sandbox
+: 1759636091:0;ls
+: 1759636094:0;clear
+: 1759636095:0;cd ../
+: 1759636096:0;ls
+: 1759636097:0;clear
+: 1759636110:0;goto web
+: 1759636111:0;ls
+: 1759636115:0;clear
+: 1759636116:0;cd bin
+: 1759636117:0;cd ../
+: 1759636118:0;ls
+: 1759636119:0;clear
+: 1759636120:0;cd dev
+: 1759636121:0;ls
+: 1759636122:0;cd ../
+: 1759636123:0;ls
+: 1759636124:0;clear
+: 1759636133:0;goto
+: 1759636136:0;goto web
+: 1759636138:0;clera
+: 1759636139:0;clear
+: 1759636151:0;cd bin
+: 1759636152:0;ls
+: 1759636155:0;nano goto
+: 1759636179:0;clear
+: 1759636188:0;nano ~/.zshrc
+: 1759636206:0;clear
+: 1759636219:0;source ~/.zshrc
+: 1759636220:0;clear
+: 1759636222:0;goto web
+: 1759636225:0;cd ../
+: 1759636226:0;clear
+: 1759636227:0;goto web
+: 1759636228:0;clear
+: 1759636240:0;chmod +x ~/bin/goto
+: 1759636241:0;clear
+: 1759636250:0;~/bin
+: 1759636253:0;ls
+: 1759636255:0;cd ../
+: 1759636255:0;ls
+: 1759636256:0;clear
+: 1759636259:0;~/web
+: 1759636261:0;clear
+: 1759636264:0;goto web
+: 1759636265:0;clear
+: 1759636398:0;source ~/bin/goto web
+: 1759636400:0;cd ../../
+: 1759636411:0;nano ~/.zshrc
+: 1759636437:0;clear
+: 1759636444:0;source ~/.zshrc
+: 1759636444:0;clear
+: 1759636450:0;goto web
+: 1759636452:0;cd ../
+: 1759636452:0;ls
+: 1759636456:0;cd ../
+: 1759636460:0;goto ml
+: 1759636461:0;clear
+: 1759636462:0;ls
+: 1759636464:0;cd ../../
+: 1759636503:0;clear
+: 1759636503:0;ls
+: 1759636588:0;ls -l
+: 1759636592:0;clear
+: 1759636614:0;ls
+: 1759636616:0;cd dotfiles
+: 1759636617:0;ls
+: 1759636617:0;clear
+: 1759636623:0;mkdir zsh
+: 1759636624:0;mkdir git
+: 1759636626:0;mkdir nvim
+: 1759636627:0;clear
+: 1759636629:0;ls
+: 1759636629:0;clear
+: 1759636632:0;mkdir aliases
+: 1759636635:0;mkdir scripts
+: 1759636642:0;touch README.md
+: 1759636643:0;clera
+: 1759636644:0;clear
+: 1759636645:0;ls
+: 1759636701:0;cd ../
+: 1759636701:0;ls
+: 1759636702:0;clear
+: 1759636704:0;mv ~/.zshrc ~/dotfiles/zsh/.zshrc
+: 1759636705:0;ls
+: 1759636717:0;ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
+: 1759636718:0;clera
+: 1759636720:0;clear
+: 1759636725:0;ls -l ~/.zshrc
+: 1759636729:0;clear
+: 1759636780:0;ls
+: 1759636782:0;cd dotfiles
+: 1759636784:0;cd ../
+: 1759636785:0;clear
+: 1759636802:0;mv ~/.gitconfig ~/dotfiles/git/.gitconfig
+: 1759636806:0;ln -s ~/dotfiles/git/.gitconfig ~/.gitconfig
+: 1759636807:0;clera
+: 1759636810:0;clear
+: 1759636813:0;ls -l ~/.gitconfig
+: 1759636826:0;ls
+: 1759636828:0;cd dotfiles
+: 1759636829:0;ls
+: 1759636831:0;cler
+: 1759636832:0;clear
+: 1759636833:0;ls
+: 1759636865:0;cd aliases
+: 1759636865:0;ls
+: 1759636866:0;clear
+: 1759636882:0;touch aliases.zsh
+: 1759636890:0;nano aliases.zsh
+: 1759636908:0;cd ../
+: 1759636909:0;ls
+: 1759636913:0;cd zsh
+: 1759636929:0;ls
+: 1759636936:0;clear
+: 1759636947:0;n ~/.zshrc
+: 1759636953:0;nano ~/.zshrc
+: 1759636962:0;ls
+: 1759636965:0;cd dotfiles
+: 1759636965:0;ls
+: 1759636967:0;cd aliases
+: 1759636967:0;ls
+: 1759636968:0;clear
+: 1759636971:0;nano aliases.zsh
+: 1759637027:0;nano ~/.zshrc
+: 1759637089:0;clear
+: 1759637090:0;ls
+: 1759637105:0;source ~/dotfiles/aliases/aliases.zsh
+: 1759637123:0;nano aliases.zsh
+: 1759637133:0;source ~/dotfiles/aliases/aliases.zsh
+: 1759637152:0;nano aliases.zsh
+: 1759637186:0;cd ../../bin/goto
+: 1759637197:0;source ~/dotfiles/aliases/aliases.zsh
+: 1759637224:0;chmod +x ~/bin/goto
+: 1759637239:0;nano ~/.zshrc
+: 1759637255:0;source ~/.zshrc
+: 1759637267:0;source ~/dotfiles/aliases/aliases.zsh
+: 1759637303:0;nano aliases.zsh
+: 1759637318:0;source ~/.zshrc
+: 1759637320:0;source ~/dotfiles/aliases/aliases.zsh
+: 1759637323:0;goto web
+: 1759637398:0;curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash\
+source ~/.zshrc\
+nvm install --lts\
+nvm use --lts\
+nvm alias default lts/*
+: 1759637435:0;npm install -g yarn\
+npm install -g pnpm
+: 1759637454:0;sudo apt install -y php php-cli php-mbstring php-xml php-curl php-zip php-mysql php-gd php-bcmath unzip curl\
+curl -sS https://getcomposer.org/installer | php\
+sudo mv composer.phar /usr/local/bin/composer
+: 1759637566:0;sudo apt install -y mariadb-server mariadb-client\
+sudo mysql_secure_installation
+: 1759637662:0;clear
+: 1759637665:0;mysql -u root -p
+: 1759637673:0;mysql
+: 1759637681:0;mysql -u titanic -p
+: 1759637684:0;clear
+: 1759637719:0;mysql -u root -po
+: 1759637725:0;mysql -u root -p
+: 1759637776:0;suqo mysql -u root -p
+: 1759637780:0;sudo mysql -u root -p
+: 1759637928:0;clear
+: 1759637938:0;mysql -u root -p
+: 1759637962:0;sudo mysql -u root -p
+: 1759637985:0;clera
+: 1759637986:0;lcear
+: 1759637988:0;clear
+: 1759637993:0;sudo systemctl stop mysql
+: 1759637995:0;sudo mysqld_safe --skip-grant-tables &
+: 1759637999:0;mysql -u root
+: 1759638027:0;sudo systemctl restart mysql
+: 1759638058:0;clear
+: 1759638059:0;sudo systemctl restart mysql
+: 1759638117:0;sudo service mysql start
+: 1759638168:0;sudo systemctl status mariadb.service
+: 1759638202:0;df -h
+: 1759638228:0;sudo mv /var/lib/mysql/ib_logfile0 /var/lib/mysql/ib_logfile0.bak\
+sudo mv /var/lib/mysql/ib_logfile1 /var/lib/mysql/ib_logfile1.bak\
+
+: 1759638235:0;sudo systemctl restart mariadb
+: 1759638289:0;sudo cat /var/log/mysql/error.log
+: 1759638292:0;sudo cat /var/log/mariadb/mariadb.log
+: 1759638298:0;sudo chown -R mysql:mysql /var/lib/mysql
+: 1759638335:0;clear
+: 1759638339:0;cd ../../
+: 1759638340:0;ls
+: 1759638341:0;clear
+: 1759664837:0;ls
+: 1759664840:0;goto web
+: 1759664844:0;clear
+: 1759664845:0;ls
+: 1759664846:0;goto 
+: 1759664850:0;clear
+: 1759664854:0;goto ml
+: 1759664856:0;clear
+: 1759664876:0;ls
+: 1759664880:0;cd bin
+: 1759664880:0;ls
+: 1759664881:0;clear
+: 1759664884:0;nano goto
+: 1759664890:0;clear
+: 1759664891:0;goto web
+: 1759664893:0;cd ../
+: 1759664896:0;cd dotfiles
+: 1759664897:0;ls
+: 1759664899:0;clear
+: 1759664902:0;ls
+: 1759664904:0;cd aliases
+: 1759664905:0;ls
+: 1759664910:0;nano aliases.zsh
+: 1759664924:0;cd ../
+: 1759664925:0;ls
+: 1759664927:0;cd zsh
+: 1759664928:0;ls
+: 1759664933:0;nano .zshrc
+: 1759665523:0;source ~/.zshrc
+: 1759665524:0;clear
+: 1759665528:0;goto web
+: 1759665537:0;source ~/bin/goto
+: 1759665541:0;source ~/bin/goto web
+: 1759665554:0;nano ~/.zshrc
+: 1759665595:0;cd ../../
+: 1759665595:0;ls
+: 1759665596:0;clear
+: 1759665602:0;chmod +x ~/bin/goto
+: 1759665604:0;clear
+: 1759665614:0;source ~/.zshrc
+: 1759665616:0;clear
+: 1759665617:0;goto web
+: 1759665619:0;clear
+: 1759665639:0;nano ~/.zshrc
+: 1759665655:0;clear
+: 1759665661:0;source ~/.zshrc
+: 1759665664:0;goto web
+: 1759665675:0;export PATH="$HOME/bin:$PATH"
+: 1759665677:0;clear
+: 1759665680:0;chmod +x ~/bin/goto
+: 1759665684:0;source ~/.zshrc
+: 1759665686:0;goto web
+: 1759665688:0;clear
+: 1759665689:0;goto
+: 1759665703:0;mysql -u root -p
+: 1759665722:0;sudo apt install -y mariadb-server mariadb-client\
+sudo mysql_secure_installation
+: 1759665754:0;[200~sudo service mysql stop || true
+: 1759665754:0;sudo service mariadb stop || true~
+: 1759665758:0;sudo service mysql stop || true
+: 1759665762:0;sudo service mariadb stop || true
+: 1759665765:0;sudo apt purge -y mysql-server mysql-client mysql-common mariadb-server mariadb-client
+: 1759665775:0;sudo apt autoremove -y\
+sudo apt autoclean
+: 1759665782:0;sudo rm -rf /etc/mysql /var/lib/mysql\
+sudo deluser mysql || true\
+sudo delgroup mysql || true
+: 1759665786:0;sudo apt update\
+sudo apt upgrade -y
+: 1759665798:0;sudo apt install -y mysql-server
+: 1759665886:0;sudo mysql_secure_installation
+: 1759665921:0;sudo service mysql start
+: 1759665924:0;sudo service mysql status
+: 1759665931:0;sudo mysql -u root -p
+: 1759665938:0;mysql -u root -p
+: 1759665940:0;clear
+: 1759666104:0;sudo apt install postgresql postgresql-contrib
+: 1759666201:0;sudo systemctl status postgresql
+: 1759666210:0;sudo -i -u postgres
+: 1759666263:0;psql
+: 1759666269:0;psql -u postgres
+: 1759666289:0;psql -u postgres -p
+: 1759666308:0;postgres
+: 1759666310:0;psql
+: 1759666321:0;clear
+: 1759666329:0;sudo -i -u postgres
+: 1759666358:0;psql 
+: 1759666370:0;sudo -i -u postgres
+: 1759666411:0;clera
+: 1759666412:0;clear
+: 1759666414:0;psql
+: 1759666431:0;clear
+: 1759666466:0;sudo apt install php php-cli php-mbstring php-xml php-bcmath php-curl php-mysql php-zip php-tokenizer php-common unzip curl -y
+: 1759666473:0;composer --version
+: 1759666492:0;composer global require laravel/installer
+: 1759666501:0;clear
+: 1759666510:0;nano ~/.zshrc
+: 1759666537:0;echo 'export PATH="$HOME/.config/composer/vendor/bin:$PATH"' >> ~/.zshrc
+: 1759666543:0;source ~/.zshrc
+: 1759666546:0;clear
+: 1759666549:0;ls
+: 1759666550:0;clear
+: 1759666552:0;goto web
+: 1759666557:0;clear
+: 1759666561:0;ls
+: 1759666563:0;cd dev
+: 1759666564:0;ls
+: 1759666564:0;clear
+: 1759666565:0;cd ml
+: 1759666566:0;clear
+: 1759666573:0;laravel new test-projec
+: 1759666650:0;cd test-projec
+: 1759666651:0;clear
+: 1759666652:0;pnpm
+: 1759666654:0;clear
+: 1759666657:0;pnpm instal
+: 1759666660:0;pnpm install
+: 1759667010:0;ls -l ~/bin/goto
+: 1759667040:0;echo $PATH
+: 1759667129:0;~/dotfiles/zsh/.zshrc
+: 1759667137:0;nano ~/dotfiles/zsh/.zshrc
+: 1759667276:0;grep -R "PATH=" ~/.zshrc ~/dotfiles 2>/dev/null
+: 1759667338:0;nano ~/.zshrc
+: 1759667370:0;cd /home/titanic
+: 1759667371:0;clear
+: 1759667379:0;rm ~/.zshrc
+: 1759667380:0;clear
+: 1759667385:0;source ~/.zshrc
+: 1759667398:0;~/dotfiles/zsh/.zshrc
+: 1759667408:0;source ~/dotfiles/zsh/.zshrc
+: 1759667411:0;clear
+: 1759667413:0;ls
+: 1759667415:0;clear
+: 1759667417:0;goto web
+: 1759667418:0;clear
+: 1759667536:0;echo $PATH
+: 1759667581:0;export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib"
+: 1759667586:0;export PATH="$HOME/bin:$HOME/.config/composer/vendor/bin:$PATH"
+: 1759667589:0;echo $PATH
+: 1759713865:0;clear
+: 1759713869:0;~/.zshrc
+: 1759713873:0;nano ~/.zshrc
+: 1759713876:0;clear
+: 1759713877:0;goto web
+: 1759713878:0;clear
+: 1759713892:0;echo $PATH;
+: 1759713962:0;which -a code
+: 1759713971:0;which -a python
+: 1759713975:0;which -a git
+: 1759713980:0;which -a python3
+: 1759713982:0;clear
+: 1759714049:0;nano ~/dotfiles/aliases/aliases.zsh
+: 1759714085:0;nano ~/bin/goto
+: 1759714140:0;nano ~/.zshrc
+: 1759714160:0;source ~/.zshrc
+: 1759714162:0;clear
+: 1759714163:0;goto web
+: 1759714164:0;clear
+: 1759714166:0;web
+: 1759714234:0;clear
+: 1759714237:0;cd ../../
+: 1759714257:0;nano ~/dotfiles/aliases/aliases.zsh
+: 1759714285:0;clear
+: 1759714294:0;source ~/.zshrc
+: 1759714296:0;clear
+: 1759714297:0;goto we
+: 1759714298:0;goto web
+: 1759714304:0;goto ml
+: 1759714307:0;goto mobile
+: 1759714308:0;clear
+: 1759714310:0;cd ../
+: 1759714310:0;ls
+: 1759714313:0;mkdir mobile
+: 1759714317:0;goto fdas
+: 1759714320:0;mkdir cli
+: 1759714323:0;ls
+: 1759714335:0;clear
+: 1759714338:0;goto sandbox
+: 1759714339:0;clear
+: 1759714341:0;cd /
+: 1759714343:0;goto web
+: 1759714346:0;cd ../../
+: 1759714348:0;clear
+: 1759714369:0;nano ~/.zshrc
+: 1759714438:0;nano ~/.p10k.zsh
+: 1759714614:0;p10k configure
+: 1759714782:0;clear
+: 1759714786:0;fate
+: 1759714788:0;clear
+: 1759714795:0;ls
+: 1759714867:0;ls -a
+: 1759714948:0;ls dotfiles
+: 1759715058:0;nano ~/.gitconfig
+: 1759715060:0;clear
+: 1759715061:0;ls
+: 1759715061:0;clear
+: 1759715080:0;ls dotfiles/git
+: 1759715097:0;mv ~/.gitconfig dotfiles/git
+: 1759715107:0;rm ~/.gitconfig
+: 1759715108:0;clear
+: 1759715117:0;ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
+: 1759715119:0;clear
+: 1759715119:0;ls
+: 1759715121:0;ls -a
+: 1759715129:0;clear
+: 1759715130:0;git status
+: 1759715136:0;goto web
+: 1759715153:0;git clone git@github.com:KKN-Tematik-09/laravel-ngrayun.git
+: 1759715157:0;clear
+: 1759715158:0;ls
+: 1759715160:0;cd ../
+: 1759715169:0;clear
+: 1759715170:0;ls
+: 1759715184:0;ls -a
+: 1759715199:0;cd bin
+: 1759715201:0;cd ../
+: 1759715203:0;cd dotfiles
+: 1759715203:0;clear
+: 1759715204:0;ls
+: 1759715214:0;cd scripts
+: 1759715230:0;clear
+: 1759715233:0;cd ../../
+: 1759715233:0;clear
+: 1759715234:0;ls
+: 1759715235:0;ls -a
+: 1759715258:0;mv .p10k.zsh dotfiles/zsh
+: 1759715259:0;clear
+: 1759715301:0;ln -sf ~/dotfiles/zsh/p10k.zsh ~/.p10k.zsh
+: 1759715303:0;clear
+: 1759715305:0;ls -a
+: 1759715313:0;cleawr
+: 1759715316:0;clear
+: 1759715317:0;exit
+: 1759715328:0;
+: 1759715332:0;clear
+: 1759715345:0;ls -a
+: 1759715395:0;ls -l ~/.gitconfig ~/.p10k.zsh
+: 1759715398:0;clear
+: 1759715418:0;ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
+: 1759715419:0;clear
+: 1759715420:0;ls
+: 1759715421:0;ls -a
+: 1759715423:0;clear
+: 1759715469:0;cd dotfiles/git
+: 1759715471:0;ls
+: 1759715476:0;mv .gitconfig gitconfig
+: 1759715477:0;clear
+: 1759715477:0;ls
+: 1759715479:0;cd ../
+: 1759715479:0;clear
+: 1759715482:0;cd zsh
+: 1759715483:0;ls
+: 1759715487:0;ls -a
+: 1759715497:0;mv .p10k.zsh p10k.zsh
+: 1759715498:0;clear
+: 1759715503:0;cd home
+: 1759715507:0;goto home
+: 1759715508:0;clear
+: 1759715513:0;ls
+: 1759715521:0;mv .zshrc zshrc
+: 1759715523:0;cd ../
+: 1759715545:0;ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
+: 1759715546:0;clear
+: 1759715547:0;ls -a
+: 1759715549:0;clear
+: 1759715554:0;exec zshrc
+: 1759715565:0;cleawr
+: 1759715566:0;clear
+: 1759715583:0;ls
+: 1759715585:0;ls -a
+: 1759715609:0;mv .zsh_history dotfiles/zsh/zsh_history
+: 1759715632:0;clear
+: 1759715633:0;ls -a
+: 1759715725:0;cd dotfiles/scripts
+: 1759715726:0;ls
+: 1759715732:0;touch setup.sh
+: 1759715733:0;cleawr
+: 1759715733:0;clear
+: 1759715740:0;vim setup.sh
+: 1759715849:0;clear
+: 1759715851:0;cd ../
+: 1759715852:0;ls
+: 1759715855:0;git init
+: 1759715858:0;clear
+: 1759715859:0;git status
+: 1759715862:0;clear
+: 1759715864:0;ls
+: 1759715887:0;cd nvim
+: 1759715919:0;sudo apt upgrade
+: 1759716630:0;sudo apt upgrade -y
+: 1759716635:0;clear
+: 1759716642:0;sudo apt install neovim -y
+: 1759716785:0;clear
+: 1759716790:0;nvim --version
+: 1759716795:0;clear
+: 1759716803:0;nvim
+: 1759716901:0;ls
+: 1759716905:0;git clone git@github.com:titanaprilian/nvim-config.git
+: 1759716912:0;ls
+: 1759716921:0;cd nvim-config
+: 1759716921:0;ls
+: 1759716923:0;clear
+: 1759716924:0;pwd
+: 1759716974:0;ls
+: 1759717078:0;rm -rf ~/.config/nvim
+: 1759717079:0;clear
+: 1759717086:0;ln -s /home/titanic/dotfiles/nvim/nvim-config ~/.config/nvim
+: 1759717088:0;ls -a
+: 1759717094:0;cd ../../../
+: 1759717097:0;ls -a
+: 1759717109:0;nvim
+: 1759717332:0;clear
+: 1759717335:0;nvim 
+: 1759717370:0;sudo add-apt-repository ppa:neovim-ppa/unstable -y
+: 1759717386:0;sudo apt update\
+sudo apt install neovim -y
+: 1759717405:0;sudo apt install -y build-essential
+: 1759717440:0;clear
+: 1759717446:0;nvim --version
+: 1759717448:0;clear
+: 1759717452:0;gcc --version
+: 1759717456:0;clear
+: 1759717469:0;nvim
+: 1759717563:0;nvim 
+: 1759717620:0;clear
+: 1759717623:0;sudo apt update
+: 1759717671:0;sudo apt install -y luarocks
+: 1759717687:0;luarocks --version
+: 1759717695:0;nvim 
+: 1759717741:0;cd nvim
+: 1759717746:0;ls
+: 1759717749:0;cd dotfiles/nvim
+: 1759717753:0;ls
+: 1759717755:0;cd nvim-config
+: 1759717756:0;ls
+: 1759717757:0;clear
+: 1759717765:0;nvim .
+: 1759717809:0;clear
+: 1759717812:0;cd ../../
+: 1759717821:0;cd ../
+: 1759717822:0;ls
+: 1759717825:0;cd dev/web
+: 1759717826:0;clear
+: 1759717826:0;ls
+: 1759717862:0;git clone git@github.com:KKN-Tematik-09/laravel-ngrayun.git
+: 1759717970:0;ls
+: 1759717971:0;cd laravel-ngrayun
+: 1759717973:0;code .
+: 1759718237:0;cd ~/dotfiles
+: 1759718237:0;ls
+: 1759718244:0;cd nvim
+: 1759718244:0;ls
+: 1759718247:0;cd nvim-config
+: 1759718247:0;ls
+: 1759718251:0;clear
+: 1759718253:0;ls
+: 1759718319:0;rm -rf .git
+: 1759718320:0;clear
+: 1759718321:0;ls
+: 1759718323:0;git status
+: 1759718331:0;clear
+: 1759718343:0;cd ../../
+: 1759718343:0;ls
+: 1759718349:0;git status
+: 1759718350:0;git add .
