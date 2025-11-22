@@ -714,3 +714,49 @@ sudo apt install neovim -y
 : 1759718343:0;ls
 : 1759718349:0;git status
 : 1759718350:0;git add .
+: 1759718366:0;celar
+: 1759718367:0;clear
+: 1759718422:0;ls
+: 1759718428:0;clear
+: 1759718431:0;git status
+: 1759718448:0;git commit -m "initial dotfiles commit"
+: 1759718450:0;git status
+: 1759718453:0;clear
+: 1759718499:0;git branch -M main
+: 1759718505:0;git remote add origin https://github.com/titanaprilian/dotfiles.git
+: 1759718507:0;git push -u origin main
+: 1759718533:0;clear
+: 1759718534:0;ls
+: 1759718536:0;cd git
+: 1759718537:0;ls
+: 1759718540:0;nano gitconfig
+: 1759718546:0;cd ../../
+: 1759718547:0;ls
+: 1759718548:0;ls -a
+: 1759718550:0;clear
+: 1759718554:0;cd dotfiles
+: 1759718559:0;git push -u origin main
+: 1759718638:0;git remote add origin git@github.com:titanaprilian/dotfiles.git
+: 1759718663:0;git remote remove origin
+: 1759718665:0;clear
+: 1759718668:0;git remote add origin git@github.com:titanaprilian/dotfiles.git
+: 1759718673:0;git push -u origin main
+: 1759718686:0;clear
+: 1759718689:0;goto web
+: 1759718690:0;clear
+: 1759719160:0;ls
+: 1759719165:0;rm -rf laravel-ngrayun
+: 1759719166:0;clear
+: 1759722913:0;neofetch
+: 1759724875:0;clear
+: 1759724885:0;ls
+: 1759724886:0;clear
+: 1759725091:0;mkdir php
+: 1759725095:0;mkdir node
+: 1759725115:0;mkdir frontend
+: 1759725117:0;clear
+: 1759725118:0;ls
+: 1759725143:0;clear
+: 1759725179:0;nvim dotfiles/aliases/aliases.zsh
+: 1759725225:0;goto web-php
+: 1759725232:0;exec ~/.zshrc
