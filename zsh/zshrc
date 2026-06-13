@@ -121,3 +121,30 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 source ~/dotfiles/aliases/aliases.zsh
+
+# bun completions
+[ -s "/home/titanic/.bun/_bun" ] && source "/home/titanic/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/titanic/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# opencode
+export PATH=/home/titanic/.opencode/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/titanic/.local/bin:$PATH"
+
+# Flutter SDK
+export PATH="$HOME/tools/flutter/bin:$PATH"
+

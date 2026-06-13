@@ -13,3 +13,5 @@ goto() {
 }
 
 alias psqlt='psql -U root -d root -h localhost'
+
+alias tree='tree --charset=ascii'
