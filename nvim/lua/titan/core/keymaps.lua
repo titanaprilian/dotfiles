@@ -25,3 +25,8 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- Toggle line wrap
 keymap.set("n", "<leader>uw", "<cmd>set wrap!<CR>", { desc = "Toggle line wrap" })
 
+-- Incremental selection (Neovim 0.12+ native)
+-- Expand selection with Ctrl+Space, shrink with Backspace
+keymap.set("n", "<C-space>", "van", { desc = "Init selection" })
+keymap.set("x", "<C-space>", "an", { desc = "Expand selection" })
+keymap.set("x", "<bs>", "in", { desc = "Shrink selection" })

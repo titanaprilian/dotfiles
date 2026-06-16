@@ -1,3 +1,4 @@
+vim.g.python3_host_prog = "/home/titanic/.pyenv/versions/neovim-python/bin/python"
 vim.g.netrw_liststyle = 3
 
 local opt = vim.opt
