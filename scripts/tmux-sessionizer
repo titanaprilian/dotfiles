@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# If an argument is passed, use it directly. Otherwise, run fzf to pick a directory.
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$( (echo "$HOME/.dotfiles"; find ~/Projects ~/Development -mindepth 1 -maxdepth 2 -type d \( -name ".*" -o -name "node_modules" -o -name "backups" -o -name "libraries" -o -name "flutter" -o -name "android" \) -prune -o -type d -print 2>/dev/null) | fzf )
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+# Create a clean session name (no dots, colons, or leading underscores)
+selected_name=$(basename "$selected" | tr . _ | tr : _ | tr ' ' _ | sed 's/^_//')
+selected_name=${selected_name:-default}
+
+tmux_running=$(pgrep -l tmux)
+
+# If tmux is not running at all and we are outside tmux, start a new session and attach
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s "$selected_name" -c "$selected"
+    exit 0
+fi
+
+# If the session doesn't exist yet, create it in detached mode (-d)
+if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+    tmux new-session -ds "$selected_name" -c "$selected"
+fi
+
+# If we are currently outside tmux ($TMUX is empty), attach to the session
+# If we are currently inside tmux (or a popup), switch the current client to the new session
+if [[ -z $TMUX ]]; then
+    tmux attach-session -t "$selected_name" 2>/dev/null || tmux switch-client -t "$selected_name"
+else
+    tmux switch-client -t "$selected_name"
+fi

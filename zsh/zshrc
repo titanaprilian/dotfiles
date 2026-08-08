@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/titanic/.zsh/completions:"* ]]; then export FPATH="/home/titanic/.zsh/completions:$FPATH"; fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -119,10 +121,10 @@ source ~/.dotfiles/aliases/aliases.zsh
 export PATH="$PATH:$HOME/.bun/bin"
 
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
+export PNPM_HOME="/home/titanic/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
 
@@ -159,4 +161,25 @@ if (( ! $+functions[compinit] )); then
 fi
 
 # Disable terminal flow control (free up Ctrl-S and Ctrl-R)
-stty -ixon -ixoff
+if [[ -t 0 ]]; then
+  stty -ixon -ixoff
+fi
+
+# ==========================================
+# Tmux Sessionizer Keybinding (Ctrl + f)
+# ==========================================
+tmux-sessionizer-widget() {
+  tmux-sessionizer
+  zle reset-prompt
+}
+zle -N tmux-sessionizer-widget
+bindkey '^f' tmux-sessionizer-widget
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+. "/home/titanic/.deno/env"
+# Initialize zsh completions (added by deno install script)
+autoload -Uz compinit
+compinit
+
+# kimi-code
+export PATH="/home/titanic/.kimi-code/bin:$PATH"
