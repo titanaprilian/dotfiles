@@ -1,3 +1,5 @@
 [user]
 	name = titanaprilian
 	email = titanaprilian73@gmail.com
+[core]
+	pager = cat

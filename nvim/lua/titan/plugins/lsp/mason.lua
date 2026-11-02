@@ -15,6 +15,8 @@ return {
 				"prismals",
 				"pyright",
 				"eslint",
+				"gopls",
+				"kotlin_language_server",
 			},
 		},
 		dependencies = {
@@ -41,6 +43,9 @@ return {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"eslint_d",
+				"goimports",
+				"gofumpt",
+				"ktlint",
 			},
 		},
 		dependencies = {

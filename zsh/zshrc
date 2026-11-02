@@ -120,13 +120,6 @@ source ~/.dotfiles/aliases/aliases.zsh
 # bun
 export PATH="$PATH:$HOME/.bun/bin"
 
-# pnpm
-export PNPM_HOME="/home/titanic/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
 
 
 # Added by Antigravity CLI installer
@@ -183,3 +176,27 @@ compinit
 
 # kimi-code
 export PATH="/home/titanic/.kimi-code/bin:$PATH"
+
+# QODER_DISPATCHER_PATH v1
+path=("$HOME/.qoder/entry" ${path:#"$HOME/.qoder/entry"})
+export PATH
+# END QODER_DISPATCHER_PATH v1
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Go 
+export PATH=$PATH:/usr/local/go/bin
+
+# Android SDK paths
+export ANDROID_HOME="$HOME/Development/android"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+
+# Add tools, platform-tools, and emulator to PATH
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$ANDROID_HOME/emulator:$PATH"
+
+# opencode
+export PATH=/home/titanic/.opencode/bin:$PATH

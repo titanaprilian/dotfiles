@@ -20,6 +20,8 @@ return {
 				liquid = { "prettierd", "prettier", stop_after_first = true },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				go = { "goimports", "gofumpt" },
+				kotlin = { "ktlint" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

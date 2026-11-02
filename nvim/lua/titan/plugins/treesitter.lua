@@ -30,6 +30,13 @@ return {
       "query",
       "vimdoc",
       "c",
+      "go",
+      "gomod",
+      "gowork",
+      "gosum",
+      "kotlin",
+      "groovy",
+      "xml",
     })
 
     -- enable autotagging (w/ nvim-ts-autotag plugin)
@@ -37,5 +44,13 @@ return {
 
     -- use bash parser for zsh files
     vim.treesitter.language.register("bash", "zsh")
+
+    -- enable treesitter syntax highlighting
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("titan-treesitter-highlight", { clear = true }),
+      callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+      end,
+    })
   end,
 }

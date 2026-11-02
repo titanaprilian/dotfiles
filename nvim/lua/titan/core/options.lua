@@ -1,6 +1,14 @@
 vim.g.python3_host_prog = "/home/titanic/.pyenv/versions/neovim-python/bin/python"
 vim.g.netrw_liststyle = 3
 
+-- Ensure Go binaries are in PATH if available
+local go_bin_dirs = { "/usr/local/go/bin", vim.fn.expand("$HOME/go/bin") }
+for _, dir in ipairs(go_bin_dirs) do
+	if vim.fn.isdirectory(dir) == 1 and not string.find(vim.env.PATH or "", dir, 1, true) then
+		vim.env.PATH = (vim.env.PATH or "") .. ":" .. dir
+	end
+end
+
 local opt = vim.opt
 
 opt.relativenumber = true
