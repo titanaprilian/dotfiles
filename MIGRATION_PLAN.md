@@ -1,127 +1,141 @@
-# Fedora to Omarchy Migration Plan
+# Fedora to Omarchy Migration Plan (Mobile Quick Reference)
 
-A zero-risk, side-by-side dual-boot migration plan to transition from Fedora 44 to Omarchy (Arch-based) without data loss.
-
----
-
-## 1. Storage Baseline & Partition Layout
-
-- **Drive**: 512 GB NVMe SSD (`/dev/nvme0n1` — 476.9 GiB raw)
-- **Filesystem**: Btrfs on `/dev/nvme0n1p3` (shares `/` and `/home`)
-- **Current Usage**: ~84 GB used, ~294 GB available
-
-```
-nvme0n1 (476.9G)
-├─nvme0n1p1   600M   vfat   /boot/efi       (EFI system partition)
-├─nvme0n1p2     2G   ext4   /boot           (Fedora kernel/initramfs)
-├─nvme0n1p3 380.9G   btrfs  / and /home     (Fedora system & data)
-├─nvme0n1p4    16M          Microsoft Reserved
-├─nvme0n1p5  92.6G   ntfs   (Unmounted NTFS partition)
-└─nvme0n1p6   845M   ntfs   (Windows recovery)
-```
-
-Targeting **100 GB** for Omarchy leaves Fedora with ~280 GB (~196 GB free), providing ample safety room.
+Zero-risk, side-by-side dual-boot migration guide from Fedora 44 to Omarchy (Arch Linux). Keep this page open on your mobile phone during installation.
 
 ---
 
-## 2. Migration Workflow
+## Hardware & Baseline Status
 
-```mermaid
-flowchart TD
-    A[Phase 1: Backup Credentials & Remote Push] --> B[Phase 2: Boot Live USB & Shrink Fedora by 100GB]
-    B --> C[Phase 3: Install Omarchy in 100GB Free Space]
-    C --> D[Phase 4: Boot Omarchy & Mount Fedora Read-Only]
-    D --> E[Phase 5: Copy Projects & Test Daily Driver]
-    E --> F[Phase 6: Delete Fedora & Expand Omarchy When Confident]
+- **Device**: ASUS VivoBook X415JP
+- **Boot Menu Key**: `Esc` (repeatedly tap on restart)
+- **BIOS Setup Key**: `F2`
+- **Secure Boot**: Disabled (verified)
+- **Drive**: 512 GB NVMe SSD (`/dev/nvme0n1`)
+- **Live Installer**: `omarchy-4.0.6.iso` on Ventoy USB drive (`/dev/sda1`)
+- **Backup Location on USB**: `/fedora_migration_backup/`
+
+```
+Current Partition Map:
+nvme0n1 (476.9 GiB)
+├─nvme0n1p1   600M   vfat   /boot/efi       [KEEP - DO NOT FORMAT]
+├─nvme0n1p2     2G   ext4   /boot           [Fedora boot - KEEP]
+├─nvme0n1p3 380.9G   btrfs  / and /home     [Fedora data - SHRINK by 100G]
+├─nvme0n1p4    16M          MS Reserved
+├─nvme0n1p5  92.6G   ntfs   Unmounted NTFS
+└─nvme0n1p6   845M   ntfs   Windows Recovery
 ```
 
 ---
 
-## 3. Step-by-Step Execution
+## Step 1: Reboot into Ventoy USB
 
-### Phase 1: Pre-Migration Backup (In Fedora)
-
-1. **Verify Remote Git Repositories**:
-   Ensure all local changes across active projects in `~/Projects` and `~/Development` are committed and pushed:
+1. Leave your Ventoy flash drive plugged into the laptop.
+2. In Fedora terminal, reboot:
    ```bash
-   git status
-   git push origin main
+   systemctl reboot
    ```
-
-2. **Archive Non-Reproducible Configurations & Keys**:
-   Create an encrypted or offline archive for essential secrets:
-   ```bash
-   tar -czvf ~/credentials_backup.tar.gz \
-     ~/.ssh \
-     ~/.gnupg \
-     ~/.config/gh \
-     ~/.gitconfig 2>/dev/null
-   ```
-   > **Note**: Copy `credentials_backup.tar.gz` to an external USB flash drive or secure storage.
+3. As soon as the screen goes black, **repeatedly tap `Esc`** until the ASUS Boot Menu appears.
+4. Select your USB drive: **`UEFI: Ventoy ...`**.
+5. In the Ventoy menu, select **`omarchy-4.0.6.iso`** and press Enter.
 
 ---
 
-### Phase 2: Disk Partitioning via Live USB
+## Step 2: Shrink Fedora by 100 GB
 
-> **Warning**: Never shrink the underlying block partition of an active, mounted root filesystem from within the running OS.
+> **Rule**: Shrink Fedora BEFORE launching the installer to avoid partition conflicts.
 
-1. Boot into an **Omarchy / Arch Linux Live USB** (or GParted Live).
-2. Open terminal or GParted:
-   - Select `/dev/nvme0n1p3` (Fedora Btrfs).
-   - Shrink the partition by **100 GB** from the right side.
-   - Leave the resulting 100 GB as **Unallocated Space**.
-
----
-
-### Phase 3: Omarchy Installation
-
-1. Launch the Omarchy / Arch installer (`archinstall` or GUI installer).
-2. Configure mount points manually:
-   - **EFI**: Select `/dev/nvme0n1p1` (`/boot/efi`) -> Mount at `/boot/efi` or `/boot` (as required by the installer). **DO NOT FORMAT IT**.
-   - **Root (`/`)**: Create a new partition (e.g. ext4 or Btrfs) inside the 100 GB unallocated space.
-   - **Swap**: Use zram (recommended) or reuse existing zram.
-3. Finish the installation and configure the bootloader (systemd-boot or GRUB with os-prober enabled).
-4. Reboot into your new Omarchy install.
+1. Once the live desktop or terminal appears, launch **GParted** (search in menu or run `sudo gparted` in terminal).
+2. Look at the top-right drive selector: ensure **/dev/nvme0n1** is selected.
+3. Right-click partition **`/dev/nvme0n1p3`** (380.9 GB Btrfs) and select **Resize/Move**.
+4. In the dialog:
+   - In **Free space following (MiB)**, type: `102400` (which is 100 GB).
+   - Alternatively, drag the right slider handle to the left until unallocated space is ~100 GB.
+5. Click **Resize/Move**.
+6. Click the green checkmark **Apply All Operations (✓)** on the toolbar.
+7. Confirm and wait for the operation to complete (usually takes 1–3 minutes).
+8. Close GParted. You now have **100 GB of Unallocated Space** directly after `nvme0n1p3`.
 
 ---
 
-### Phase 4: Selective Data Migration (In Omarchy)
+## Step 3: Launch Omarchy Installer
 
-Once booted into Omarchy, mount your old Fedora partition in **read-only** mode:
+1. Launch the **Install Omarchy** icon (or run the installer from terminal).
+2. Set your Language, Keyboard layout, and Timezone.
+3. When reaching **Disk Partitioning / Storage**:
+   - Choose **Manual Partitioning** (or "Something Else").
+   - Select the **100 GB Unallocated Space** -> click Create:
+     - **Mount Point**: `/` (root)
+     - **Filesystem**: `btrfs` (recommended) or `ext4`
+     - **Size**: Use entire 100 GB
+     - **Format**: Yes (Format this new partition)
+   - Select the existing EFI partition **`/dev/nvme0n1p1`** (600 MB):
+     - **Mount Point**: `/boot/efi` (or `/boot` if prompted)
+     - **Format**: **NO / UNCHECK FORMAT** (Warning: Formatting this deletes Fedora bootloader)
+4. User creation:
+   - **Username**: `titanic`
+   - Set password and enable administrative/sudo privileges.
+5. Bootloader:
+   - Select your NVMe drive (`/dev/nvme0n1`) for EFI bootloader installation.
+6. Review the summary and start the installation.
+7. Once finished, reboot the PC and unplug the USB drive.
+
+---
+
+## Step 4: First Boot into Omarchy & Restore Secrets
+
+When Omarchy boots up, plug your Ventoy flash drive back in to restore your keys and environment secrets.
+
+### 4.1. Restore SSH, GitHub CLI, and Cloud Credentials
+Open terminal in Omarchy and run:
+```bash
+# Find your USB mount point (usually /run/media/titanic/Ventoy or /mnt)
+USB_PATH="/run/media/titanic/Ventoy"
+
+# Extract credentials
+tar -xzvf "$USB_PATH/fedora_migration_backup/credentials.tar.gz" -C ~
+
+# Secure SSH permissions
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/id_* ~/.ssh/google_compute_engine 2>/dev/null
+chmod 644 ~/.ssh/*.pub ~/.ssh/config ~/.ssh/known_hosts 2>/dev/null
+
+# Test GitHub SSH connection
+ssh -T git@github.com
+```
+
+### 4.2. Clone Your Dotfiles
+```bash
+git clone git@github.com:titanaprilian/dotfiles.git ~/.dotfiles
+```
+
+### 4.3. Mount Old Fedora Home & Restore Work
+Your Fedora files are 100% safe on `nvme0n1p3`. Mount it in read-only mode to copy anything you need:
 
 ```bash
-# 1. Create a mount point
 sudo mkdir -p /mnt/fedora
-
-# 2. Mount the Fedora Btrfs home subvolume safely
 sudo mount -o ro,subvol=home /dev/nvme0n1p3 /mnt/fedora
 
-# 3. Restore dotfiles & repos
-git clone git@github.com:titanaprilian/dotfiles.git ~/.dotfiles
-
-# 4. Copy project directories
+# Copy Projects and Development directories:
 cp -a /mnt/fedora/titanic/Projects ~/Projects
 cp -a /mnt/fedora/titanic/Development ~/Development
 
-# 5. Restore SSH / GPG credentials from your backup drive
-tar -xzvf /path/to/credentials_backup.tar.gz -C ~/
+# Unmount when done:
+sudo umount /mnt/fedora
 ```
 
-> **Best Practice**: Do not bulk copy `~/.cache`, `~/.local`, or old system configs. Install packages natively through `pacman` / `yay` to maintain a clean system.
+### 4.4. Restore All 30 Project `.env` Files
+```bash
+tar -xzvf "$USB_PATH/fedora_migration_backup/env_files.tar.gz" -C ~
+```
+*(All 30 `.env` files will automatically unpack into their respective project folders).*
 
 ---
 
-### Phase 5: Dual-Boot Safety Period
+## Step 5: Safety Period & Final Drive Reclamation
 
-- Keep both Fedora and Omarchy installed side-by-side for **1 to 2 weeks**.
-- If any missing configuration, proprietary tool, or build environment is needed urgently, reboot into Fedora at any time.
-
----
-
-### Phase 6: Final Cutover (Reclaim Whole Drive)
-
-When Omarchy is fully verified and stable:
-
-1. Boot into a Live USB.
-2. Delete `/dev/nvme0n1p2` (Fedora `/boot`) and `/dev/nvme0n1p3` (Fedora root/home).
-3. Expand the Omarchy root partition into the newly freed space across the entire NVMe drive.
+- Keep Fedora installed for **1 to 2 weeks** as a fallback.
+- Whenever you reboot, you can pick Fedora from GRUB/systemd-boot if you need to check something.
+- Once completely satisfied with Omarchy:
+  1. Boot the Live USB one last time.
+  2. Open GParted and delete `/dev/nvme0n1p2` and `/dev/nvme0n1p3` (Fedora).
+  3. Expand the Omarchy partition across the entire free space.
