@@ -11,7 +11,9 @@ Zero-risk, side-by-side dual-boot migration guide from Fedora 44 to Omarchy (Arc
 - **BIOS Setup Key**: `F2`
 - **Secure Boot**: Disabled (verified)
 - **Drive**: 512 GB NVMe SSD (`/dev/nvme0n1`)
-- **Live Installer**: `omarchy-4.0.6.iso` on Ventoy USB drive (`/dev/sda1`)
+- **ISO on Ventoy USB**:
+  1. `Fedora-Workstation-Live-44-1.7.x86_64.iso` (Used for safe GParted shrinking)
+  2. `omarchy-4.0.6.iso` (Used for Arch/Omarchy installation)
 - **Backup Location on USB**: `/fedora_migration_backup/`
 
 ```
@@ -27,68 +29,58 @@ nvme0n1 (476.9 GiB)
 
 ---
 
-## Step 1: Reboot into Ventoy USB
+## Why We Must Shrink via Live USB (Not From Inside Running Fedora)
 
-1. Leave your Ventoy flash drive plugged into the laptop.
-2. In Fedora terminal, reboot:
+While Btrfs can shrink its filesystem while running, the underlying disk partition table (`/dev/nvme0n1p3`) cannot be resized while the root OS is running on it. The Linux kernel locks the partition table (`device or resource busy`). If the partition table is not resized, the Omarchy installer will see **0 GB unallocated space**.
+
+Because Omarchy's ISO boots directly into the installer (without a GUI desktop/GParted), the cleanest and safest method uses the **Fedora Live ISO already on your Ventoy USB**.
+
+---
+
+## Step 1: Boot Fedora Live to Shrink (3 Minutes)
+
+1. Reboot your PC:
    ```bash
    systemctl reboot
    ```
-3. As soon as the screen goes black, **repeatedly tap `Esc`** until the ASUS Boot Menu appears.
-4. Select your USB drive: **`UEFI: Ventoy ...`**.
-5. In the Ventoy menu, select **`omarchy-4.0.6.iso`** and press Enter.
+2. As soon as the screen turns off, repeatedly tap **`Esc`** until the ASUS Boot Menu appears.
+3. Select **`UEFI: Ventoy ...`**.
+4. In the Ventoy menu, select **`Fedora-Workstation-Live-44-1.7.x86_64.iso`**.
+5. Select **"Try Fedora"** to reach the live desktop.
+6. Open **GParted** (or **Disks**):
+   - Select `/dev/nvme0n1` (top right).
+   - Right-click `/dev/nvme0n1p3` (380.9 GB Btrfs) -> **Resize/Move**.
+   - Under **Free space following (MiB)**, enter: `102400` (100 GB).
+   - Click **Resize/Move**, then click the green checkmark **Apply (✓)**.
+7. Once finished, you will see **100 GB Unallocated Space**.
+8. Reboot the laptop:
+   ```bash
+   reboot
+   ```
 
 ---
 
-## Step 2: Shrink Fedora by 100 GB
+## Step 2: Boot Omarchy & Install
 
-> **Rule**: Shrink Fedora BEFORE launching the installer to avoid partition conflicts.
-
-1. Once the live desktop or terminal appears, launch **GParted** (search in menu or run `sudo gparted` in terminal).
-2. Look at the top-right drive selector: ensure **/dev/nvme0n1** is selected.
-3. Right-click partition **`/dev/nvme0n1p3`** (380.9 GB Btrfs) and select **Resize/Move**.
-4. In the dialog:
-   - In **Free space following (MiB)**, type: `102400` (which is 100 GB).
-   - Alternatively, drag the right slider handle to the left until unallocated space is ~100 GB.
-5. Click **Resize/Move**.
-6. Click the green checkmark **Apply All Operations (✓)** on the toolbar.
-7. Confirm and wait for the operation to complete (usually takes 1–3 minutes).
-8. Close GParted. You now have **100 GB of Unallocated Space** directly after `nvme0n1p3`.
+1. Tap **`Esc`** during reboot to open the ASUS Boot Menu again.
+2. Select **`UEFI: Ventoy ...`** -> choose **`omarchy-4.0.6.iso`**.
+3. In the Omarchy / Arch installer:
+   - When asked for disk layout, select the drive: `/dev/nvme0n1`.
+   - Choose **Use free space** (or manual partition):
+     - Target the **100 GB unallocated space** for `/` (root filesystem: `btrfs` or `ext4`).
+     - For EFI: Select `/dev/nvme0n1p1` (600 MB) and mount at `/boot` or `/boot/efi`. **DO NOT FORMAT IT**.
+   - Set username to `titanic` and assign your password.
+4. Complete the installation and reboot.
 
 ---
 
-## Step 3: Launch Omarchy Installer
+## Step 3: First Boot into Omarchy & Restore Secrets
 
-1. Launch the **Install Omarchy** icon (or run the installer from terminal).
-2. Set your Language, Keyboard layout, and Timezone.
-3. When reaching **Disk Partitioning / Storage**:
-   - Choose **Manual Partitioning** (or "Something Else").
-   - Select the **100 GB Unallocated Space** -> click Create:
-     - **Mount Point**: `/` (root)
-     - **Filesystem**: `btrfs` (recommended) or `ext4`
-     - **Size**: Use entire 100 GB
-     - **Format**: Yes (Format this new partition)
-   - Select the existing EFI partition **`/dev/nvme0n1p1`** (600 MB):
-     - **Mount Point**: `/boot/efi` (or `/boot` if prompted)
-     - **Format**: **NO / UNCHECK FORMAT** (Warning: Formatting this deletes Fedora bootloader)
-4. User creation:
-   - **Username**: `titanic`
-   - Set password and enable administrative/sudo privileges.
-5. Bootloader:
-   - Select your NVMe drive (`/dev/nvme0n1`) for EFI bootloader installation.
-6. Review the summary and start the installation.
-7. Once finished, reboot the PC and unplug the USB drive.
+When Omarchy boots, log in and plug your Ventoy flash drive back in:
 
----
-
-## Step 4: First Boot into Omarchy & Restore Secrets
-
-When Omarchy boots up, plug your Ventoy flash drive back in to restore your keys and environment secrets.
-
-### 4.1. Restore SSH, GitHub CLI, and Cloud Credentials
-Open terminal in Omarchy and run:
+### 3.1. Restore SSH, GitHub CLI, and Cloud Credentials
 ```bash
-# Find your USB mount point (usually /run/media/titanic/Ventoy or /mnt)
+# Find USB mount point
 USB_PATH="/run/media/titanic/Ventoy"
 
 # Extract credentials
@@ -99,17 +91,17 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/id_* ~/.ssh/google_compute_engine 2>/dev/null
 chmod 644 ~/.ssh/*.pub ~/.ssh/config ~/.ssh/known_hosts 2>/dev/null
 
-# Test GitHub SSH connection
+# Test connection
 ssh -T git@github.com
 ```
 
-### 4.2. Clone Your Dotfiles
+### 3.2. Clone Your Dotfiles
 ```bash
 git clone git@github.com:titanaprilian/dotfiles.git ~/.dotfiles
 ```
 
-### 4.3. Mount Old Fedora Home & Restore Work
-Your Fedora files are 100% safe on `nvme0n1p3`. Mount it in read-only mode to copy anything you need:
+### 3.3. Mount Old Fedora Home & Restore Work
+Your original Fedora files are completely intact on `nvme0n1p3`:
 
 ```bash
 sudo mkdir -p /mnt/fedora
@@ -123,15 +115,14 @@ cp -a /mnt/fedora/titanic/Development ~/Development
 sudo umount /mnt/fedora
 ```
 
-### 4.4. Restore All 30 Project `.env` Files
+### 3.4. Restore All 30 Project `.env` Files
 ```bash
 tar -xzvf "$USB_PATH/fedora_migration_backup/env_files.tar.gz" -C ~
 ```
-*(All 30 `.env` files will automatically unpack into their respective project folders).*
 
 ---
 
-## Step 5: Safety Period & Final Drive Reclamation
+## Step 4: Safety Period & Final Drive Reclamation
 
 - Keep Fedora installed for **1 to 2 weeks** as a fallback.
 - Whenever you reboot, you can pick Fedora from GRUB/systemd-boot if you need to check something.
